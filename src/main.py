@@ -16,11 +16,12 @@ params = {
     "serviceIds": "WHmjBONC1Mcf8VSqjWar"
 }
 
-response = requests.get(URL, params=params, timeout=10)
+def get_available_slots():
+    response = requests.get(URL, params=params, timeout=10)
+    response.raise_for_status
+    return response.json()
 
-print(response.status_code)
-slots = response.json()
-
+slots = get_available_slots()
 print(slots)
 print(type(slots))
 
